@@ -27,7 +27,7 @@ public class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Baocao = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -293,7 +293,7 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Mở Sổ", jPanel1);
+        Baocao.addTab("Mở Sổ", jPanel1);
 
         jButton5.setText("Thêm");
 
@@ -453,7 +453,7 @@ public class Admin extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Phiếu Gửi", jPanel2);
+        Baocao.addTab("Phiếu Gửi", jPanel2);
 
         jButton16.setText("Thêm");
 
@@ -613,7 +613,7 @@ public class Admin extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Phiếu Rút", jPanel3);
+        Baocao.addTab("Phiếu Rút", jPanel3);
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -674,7 +674,7 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Tra Cứu", jPanel4);
+        Baocao.addTab("Tra Cứu", jPanel4);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -750,7 +750,7 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Báo Cáo Ngày", jPanel5);
+        Baocao.addTab("Báo Cáo Ngày", jPanel5);
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -833,20 +833,20 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Báo Cáo Mở Đóng Sổ Tháng", jPanel13);
+        Baocao.addTab("Báo Cáo Mở Đóng Sổ Tháng", jPanel13);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(Baocao)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(Baocao)
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleName("SoTietKiem");
+        Baocao.getAccessibleContext().setAccessibleName("SoTietKiem");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -887,6 +887,7 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane Baocao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -948,7 +949,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable5;
