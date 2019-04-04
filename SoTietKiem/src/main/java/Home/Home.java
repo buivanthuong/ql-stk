@@ -113,7 +113,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Admin.Admin ad = new Admin.Admin();
+       
+        Admin.Admin ad = new Admin.Admin();
        ad.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
