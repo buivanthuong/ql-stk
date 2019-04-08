@@ -12,27 +12,20 @@ import java.util.List;
  
  
 import org.hibernate.*;
-import stk.domain.Employee;
+import stk.helper.KhachHangHelper;
 import stk.util.HibernateUtil;
- 
+import stk.entities.Khachhang;
 public class App {
  
 public static void main(String[] args) {
-          
-        Session session = HibernateUtil.getSessionFactory().openSession();
-  
-        session.beginTransaction();
- 
+
+       KhachHangHelper kh = new KhachHangHelper();
        
-//        session.getTransaction().commit();
-// 
-//        Query q = session.createQuery("From Employee ");
-//                 
-//        List<Employee> resultList = q.list();
-//        System.out.println("num of employess:" + resultList.size());
-//        for (Employee next : resultList) {
-//            System.out.println("next employee: " + next);
-//        }
+        List<Khachhang> resultList = kh.getKhachhangList();;
+        System.out.println("num of employess:" + resultList.size());
+        for (Khachhang next : resultList) {
+            System.out.println("next employee: " + next);
+        }
  
     }
     

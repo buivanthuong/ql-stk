@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Home;
+package stk.controller;
 
 import javax.swing.JOptionPane;
 
@@ -114,12 +114,12 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        Admin.Admin ad = new Admin.Admin();
+        stk.controller.Admin.Admin ad = new stk.controller.Admin.Admin();
        ad.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Quydinh.Quydinh qd = new Quydinh.Quydinh();
+        stk.controller.Quydinh.Quydinh qd = new stk.controller.Quydinh.Quydinh();
         qd.setVisible(true);
                 
     }//GEN-LAST:event_jButton2ActionPerformed
