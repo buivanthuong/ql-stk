@@ -8,43 +8,42 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import stk.entities.Khachhang;
+import stk.entities.Phieuguitien;
 import stk.util.HibernateUtil;
 
 /**
  *
  * @author Administrator
  */
-public class KhachHangHelper {
+public class PhieuGoiHelper {
  Session session = null;
-    List<Khachhang> userList;
+    List<Phieuguitien> userList;
 
-    public KhachHangHelper() {
+    public PhieuGoiHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
     @SuppressWarnings("unchecked")
-    public List<Khachhang> getKhachhangList() {
-        userList = new ArrayList<Khachhang>();
+    public List<Phieuguitien> getPhieuguitienList() {
+        userList = new ArrayList<Phieuguitien>();
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Khachhang as kh ");        
-            userList = (List<Khachhang>) q.list();
+            Query q = session.createQuery("from Phieuguitien as kh");
+            userList = (List<Phieuguitien>) q.list();
         } catch (Exception e) {
             userList = null;
             e.printStackTrace();
         }
         session.close();
-
         return userList;
     }
 
-    public Khachhang getKhachhangByID(int userId) {
-        Khachhang user = null;
+    public Phieuguitien getKhachhangByID(int userId) {
+        Phieuguitien user = null;
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Khachhang as kh where kh.id=" + userId);
-            user = (Khachhang) q.uniqueResult();
+            Query q = session.createQuery("from Phieuguitien as kh where kh.id=" + userId);
+            user = (Phieuguitien) q.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
