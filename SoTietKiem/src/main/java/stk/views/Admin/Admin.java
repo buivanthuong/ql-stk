@@ -5,6 +5,8 @@
  */
 package stk.views.Admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +15,16 @@ import stk.entities.Khachhang;
 import stk.entities.Phieuguitien;
 import stk.helper.KhachHangHelper;
 import stk.helper.PhieuGoiHelper;
+import stk.util.Utill;
+import stk.views.Accout.Accout;
+import stk.views.Accout.Login;
+import stk.views.Config.Config;
+import stk.views.Report.DailyReport;
+import stk.views.Report.SavingReport;
+import stk.views.Saving.AddSaving;
+import stk.views.Saving.Saving;
+import stk.views.Ticket.TicketIn;
+import stk.views.Ticket.TicketOut;
 
 /**
  *
@@ -25,7 +37,7 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
-        
+        updateTime();
         setTable();
 
     }
@@ -44,31 +56,31 @@ public class Admin extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        tfSearchSaving = new javax.swing.JTextField();
+        btSearch = new javax.swing.JButton();
+        btOpenSaving = new javax.swing.JButton();
+        btTicketIn = new javax.swing.JButton();
+        btTicketOut = new javax.swing.JButton();
+        btReport = new javax.swing.JButton();
+        lbNameBank = new javax.swing.JLabel();
+        lbAddress = new javax.swing.JLabel();
+        btLogo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTime = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        mnAccount = new javax.swing.JMenu();
+        mnInfoAccount = new javax.swing.JMenuItem();
+        mnLogout = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        mnOpenSaving = new javax.swing.JMenuItem();
+        mnListSaving = new javax.swing.JMenuItem();
+        mnTicket = new javax.swing.JMenu();
+        mnTicketIn = new javax.swing.JMenuItem();
+        mnTicketOut = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mnReportDaily = new javax.swing.JMenuItem();
+        mnReportMonthly = new javax.swing.JMenuItem();
+        mnConfig = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
@@ -78,7 +90,10 @@ public class Admin extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 533));
+        setMaximumSize(new java.awt.Dimension(770, 550));
+        setMinimumSize(new java.awt.Dimension(770, 550));
+        setPreferredSize(new java.awt.Dimension(767, 530));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -87,117 +102,152 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setAlignmentX(0.5F);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 440, 85));
 
-        jTextField1.setText("Tra cứu sổ tiết kiệm");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfSearchSaving.setText("Tra cứu sổ tiết kiệm");
+        tfSearchSaving.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfSearchSavingActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 361, -1));
+        getContentPane().add(tfSearchSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 361, -1));
 
-        jButton1.setText("Tra cứu");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
+        btSearch.setText("Tra cứu");
+        getContentPane().add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton2.setText("Mở sổ tiết kiệm");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 143, 63));
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton3.setText("Phiếu gởi");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btOpenSaving.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btOpenSaving.setText("Mở sổ tiết kiệm");
+        btOpenSaving.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btOpenSavingActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 132, 63));
+        getContentPane().add(btOpenSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 143, 63));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton4.setText("Phiểu rút");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 128, 63));
+        btTicketIn.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btTicketIn.setText("Phiếu gởi");
+        btTicketIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTicketInActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btTicketIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 132, 63));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton5.setText("Báo cáo");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 137, 63));
+        btTicketOut.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btTicketOut.setText("Phiểu rút");
+        btTicketOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTicketOutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btTicketOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 128, 63));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("NGÂN HÀNG NHÀ NƯỚC VIỆT NAM");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+        btReport.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btReport.setText("Báo cáo");
+        btReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btReportActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 137, 63));
 
-        jLabel3.setText("123 Lê lợi , Phường Dakao, Quận 1, TP HỒ CHÍ MINH");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        lbNameBank.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbNameBank.setText("NGÂN HÀNG NHÀ NƯỚC VIỆT NAM");
+        getContentPane().add(lbNameBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        jButton6.setText("jButton6");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
+        lbAddress.setText("123 Lê lợi , Phường Dakao, Quận 1, TP HỒ CHÍ MINH");
+        getContentPane().add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        btLogo.setText("jButton6");
+        getContentPane().add(btLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("12:30 PM      22 - 05 - 2019");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 10, 170, 40));
+        lbTime.setText("12:30 PM      22 - 05 - 2019");
+        jPanel1.add(lbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 0, 170, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 770, 50));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 770, 50));
 
-        jMenu1.setText("Tài khoản");
+        mnAccount.setText("Tài khoản");
 
-        jMenuItem4.setText("Thông tin tài khoản");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mnInfoAccount.setText("Thông tin tài khoản");
+        mnInfoAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mnInfoAccountActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        mnAccount.add(mnInfoAccount);
 
-        jMenuItem5.setText("Đăng xuất");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mnLogout.setText("Đăng xuất");
+        mnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mnLogoutActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        mnAccount.add(mnLogout);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnAccount);
 
         jMenu2.setText("Sổ tiết kiêm");
 
-        jMenuItem9.setText("Mở sổ tiết kiệm");
-        jMenu2.add(jMenuItem9);
+        mnOpenSaving.setText("Mở sổ tiết kiệm");
+        mnOpenSaving.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnOpenSavingActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnOpenSaving);
 
-        jMenuItem10.setText("Danh sách sổ");
-        jMenu2.add(jMenuItem10);
+        mnListSaving.setText("Danh sách sổ");
+        mnListSaving.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnListSavingActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnListSaving);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Phiếu gửi/ rút");
+        mnTicket.setText("Phiếu gửi/ rút");
 
-        jMenuItem7.setText("Phiểu gửi");
-        jMenu3.add(jMenuItem7);
+        mnTicketIn.setText("Phiểu gửi");
+        mnTicketIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnTicketInActionPerformed(evt);
+            }
+        });
+        mnTicket.add(mnTicketIn);
 
-        jMenuItem8.setText("Phiếu rút");
-        jMenu3.add(jMenuItem8);
+        mnTicketOut.setText("Phiếu rút");
+        mnTicketOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnTicketOutActionPerformed(evt);
+            }
+        });
+        mnTicket.add(mnTicketOut);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnTicket);
 
         jMenu4.setText("Báo cáo");
 
-        jMenuItem2.setText("Báo cáo ngày");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnReportDaily.setText("Báo cáo ngày");
+        mnReportDaily.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnReportDailyActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jMenu4.add(mnReportDaily);
 
-        jMenuItem3.setText("Báo cáo tháng");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mnReportMonthly.setText("Báo cáo tháng");
+        mnReportMonthly.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mnReportMonthlyActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(mnReportMonthly);
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Quy định");
+        mnConfig.setText("Quy định");
 
         jMenuItem6.setText("Thay đổi quy định");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -205,42 +255,101 @@ public class Admin extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem6);
+        mnConfig.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnConfig);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnReportDailyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnReportDailyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        DailyReport ds = new DailyReport();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnReportDailyActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnReportMonthlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnReportMonthlyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        SavingReport ds = new SavingReport();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnReportMonthlyActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void mnInfoAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnInfoAccountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        Accout ds = new Accout();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnInfoAccountActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+        Utill.SaveLogin(false);
+        Utill.SaveUser(null);
+        
+        Login ds = new Login();
+        ds.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnLogoutActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        Config ds = new Config();
+        ds.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfSearchSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchSavingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        Saving ds = new Saving();
+         ds.setVisible(true);
+    }//GEN-LAST:event_tfSearchSavingActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btTicketInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketInActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        TicketIn ds = new TicketIn();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btTicketInActionPerformed
+
+    private void btOpenSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOpenSavingActionPerformed
+         Saving ds = new Saving();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btOpenSavingActionPerformed
+
+    private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
+        // TODO add your handling code here:
+        DailyReport ds = new DailyReport();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btReportActionPerformed
+
+    private void mnOpenSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnOpenSavingActionPerformed
+        // TODO add your handling code here:
+         AddSaving ds = new AddSaving();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnOpenSavingActionPerformed
+
+    private void mnListSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListSavingActionPerformed
+        // TODO add your handling code here:
+        Saving ds = new Saving();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnListSavingActionPerformed
+
+    private void mnTicketInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTicketInActionPerformed
+        // TODO add your handling code here:
+         TicketIn ds = new TicketIn();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnTicketInActionPerformed
+
+    private void btTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketOutActionPerformed
+        // TODO add your handling code here:
+         TicketOut ds = new TicketOut();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btTicketOutActionPerformed
+
+    private void mnTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTicketOutActionPerformed
+        // TODO add your handling code here:
+         TicketIn ds = new TicketIn();
+         ds.setVisible(true);
+    }//GEN-LAST:event_mnTicketOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,36 +389,36 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btLogo;
+    private javax.swing.JButton btOpenSaving;
+    private javax.swing.JButton btReport;
+    private javax.swing.JButton btSearch;
+    private javax.swing.JButton btTicketIn;
+    private javax.swing.JButton btTicketOut;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbAddress;
+    private javax.swing.JLabel lbNameBank;
+    private javax.swing.JLabel lbTime;
+    private javax.swing.JMenu mnAccount;
+    private javax.swing.JMenu mnConfig;
+    private javax.swing.JMenuItem mnInfoAccount;
+    private javax.swing.JMenuItem mnListSaving;
+    private javax.swing.JMenuItem mnLogout;
+    private javax.swing.JMenuItem mnOpenSaving;
+    private javax.swing.JMenuItem mnReportDaily;
+    private javax.swing.JMenuItem mnReportMonthly;
+    private javax.swing.JMenu mnTicket;
+    private javax.swing.JMenuItem mnTicketIn;
+    private javax.swing.JMenuItem mnTicketOut;
+    private javax.swing.JTextField tfSearchSaving;
     // End of variables declaration//GEN-END:variables
 
     public  void setTable(){
@@ -352,5 +461,24 @@ public class Admin extends javax.swing.JFrame {
 //
 //
 //            }
+    }
+
+    private void updateTime() {
+        
+        Thread  updateThread = new Thread() {
+            public void run() {
+                while (true) {
+                    try {
+                        lbTime.setText( new SimpleDateFormat(" HH:mm:ss dd/MM/YYYY").format(new Date()));
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+	// background thread
+	updateThread.setDaemon(true);
+	updateThread.start();
     }
 }

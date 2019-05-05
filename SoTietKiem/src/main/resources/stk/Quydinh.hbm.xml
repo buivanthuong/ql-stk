@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 30, 2019 10:15:31 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="sotietkiem" name="stk.entities.Quydinh" optimistic-lock="version" table="quydinh">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="soLoai" type="int">
+      <column name="SoLoai" not-null="true"/>
+    </property>
+    <property name="soNgayDaoHan" type="int">
+      <column name="SoNgayDaoHan" not-null="true"/>
+    </property>
+    <property name="thayDoiLaiXuat" type="boolean">
+      <column name="ThayDoiLaiXuat" not-null="true"/>
+    </property>
+    <property name="tienGoiToiThieu" type="int">
+      <column name="TienGoiToiThieu" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

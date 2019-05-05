@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,13 +39,20 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-reverse-engineering>
-  <schema-selection match-catalog="sotietkiem"/>
-  <table-filter match-name="sotk"/>
-  <table-filter match-name="loaitietkiem"/>
-  <table-filter match-name="khachhang"/>
-  <table-filter match-name="phieuruttien"/>
-  <table-filter match-name="taikhoan"/>
-  <table-filter match-name="quydinh"/>
-  <table-filter match-name="phieuguitien"/>
-</hibernate-reverse-engineering>
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sotietkiem?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="stk/entities/Phieuruttien.hbm.xml"/>
+    <mapping resource="stk/entities/Khachhang.hbm.xml"/>
+    <mapping resource="stk/entities/Phieuguitien.hbm.xml"/>
+    <mapping resource="stk/entities/Loaitietkiem.hbm.xml"/>
+    <mapping resource="stk/entities/Sotk.hbm.xml"/>
+    <mapping resource="stk/hibernate.hbm.xml"/>
+    <mapping resource="../java/stk/entities/hibernate.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

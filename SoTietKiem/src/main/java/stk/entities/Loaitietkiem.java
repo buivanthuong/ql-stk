@@ -1,5 +1,5 @@
 package stk.entities;
-// Generated Apr 8, 2019 2:27:23 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2019 10:15:30 AM by Hibernate Tools 4.3.1
 
 
 
@@ -11,12 +11,14 @@ public class Loaitietkiem  implements java.io.Serializable {
 
      private Integer id;
      private String tenLoai;
+     private float laiXuat;
 
     public Loaitietkiem() {
     }
 
-    public Loaitietkiem(String tenLoai) {
+    public Loaitietkiem(String tenLoai, float laiXuat) {
        this.tenLoai = tenLoai;
+       this.laiXuat = laiXuat;
     }
    
     public Integer getId() {
@@ -32,6 +34,13 @@ public class Loaitietkiem  implements java.io.Serializable {
     
     public void setTenLoai(String tenLoai) {
         this.tenLoai = tenLoai;
+    }
+    public float getLaiXuat() {
+        return this.laiXuat;
+    }
+    
+    public void setLaiXuat(float laiXuat) {
+        this.laiXuat = laiXuat;
     }
 
 
