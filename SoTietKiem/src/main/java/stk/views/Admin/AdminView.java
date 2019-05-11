@@ -16,26 +16,27 @@ import stk.entities.Phieuguitien;
 import stk.helper.KhachHangHelper;
 import stk.helper.PhieuGoiHelper;
 import stk.util.Utill;
-import stk.views.Accout.Accout;
-import stk.views.Accout.Login;
-import stk.views.Config.Config;
+import stk.views.Accout.AccoutView;
+import stk.views.Accout.LoginView;
+import stk.views.Config.ConfigView;
+import stk.views.KhachHang.KhachHangView;
 import stk.views.Report.DailyReport;
-import stk.views.Report.SavingReport;
-import stk.views.Saving.AddSaving;
-import stk.views.Saving.Saving;
-import stk.views.Ticket.TicketIn;
-import stk.views.Ticket.TicketOut;
+import stk.views.Report.SavingReportView;
+import stk.views.Saving.AddSavingView;
+import stk.views.Saving.SavingView;
+import stk.views.Ticket.TicketInView;
+import stk.views.Ticket.TicketOutView;
 
 /**
  *
  * @author chitai
  */
-public class Admin extends javax.swing.JFrame {
+public class AdminView extends javax.swing.JFrame {
 
     /**
      * Creates new form Admin
      */
-    public Admin() {
+    public AdminView() {
         initComponents();
         updateTime();
         setTable();
@@ -82,6 +83,8 @@ public class Admin extends javax.swing.JFrame {
         mnReportMonthly = new javax.swing.JMenuItem();
         mnConfig = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -259,6 +262,23 @@ public class Admin extends javax.swing.JFrame {
 
         jMenuBar1.add(mnConfig);
 
+        jMenu1.setText("Khách hàng");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setText("Danh sách khách hàng");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -272,13 +292,13 @@ public class Admin extends javax.swing.JFrame {
 
     private void mnReportMonthlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnReportMonthlyActionPerformed
         // TODO add your handling code here:
-        SavingReport ds = new SavingReport();
+        SavingReportView ds = new SavingReportView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnReportMonthlyActionPerformed
 
     private void mnInfoAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnInfoAccountActionPerformed
         // TODO add your handling code here:
-        Accout ds = new Accout();
+        AccoutView ds = new AccoutView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnInfoAccountActionPerformed
 
@@ -287,31 +307,31 @@ public class Admin extends javax.swing.JFrame {
         Utill.SaveLogin(false);
         Utill.SaveUser(null);
         
-        Login ds = new Login();
+        LoginView ds = new LoginView();
         ds.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_mnLogoutActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        Config ds = new Config();
+        ConfigView ds = new ConfigView();
         ds.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void tfSearchSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchSavingActionPerformed
         // TODO add your handling code here:
-        Saving ds = new Saving();
+        SavingView ds = new SavingView();
          ds.setVisible(true);
     }//GEN-LAST:event_tfSearchSavingActionPerformed
 
     private void btTicketInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketInActionPerformed
         // TODO add your handling code here:
-        TicketIn ds = new TicketIn();
+        TicketInView ds = new TicketInView();
          ds.setVisible(true);
     }//GEN-LAST:event_btTicketInActionPerformed
 
     private void btOpenSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOpenSavingActionPerformed
-         Saving ds = new Saving();
+         SavingView ds = new SavingView();
          ds.setVisible(true);
     }//GEN-LAST:event_btOpenSavingActionPerformed
 
@@ -323,33 +343,43 @@ public class Admin extends javax.swing.JFrame {
 
     private void mnOpenSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnOpenSavingActionPerformed
         // TODO add your handling code here:
-         AddSaving ds = new AddSaving();
+         AddSavingView ds = new AddSavingView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnOpenSavingActionPerformed
 
     private void mnListSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListSavingActionPerformed
         // TODO add your handling code here:
-        Saving ds = new Saving();
+        SavingView ds = new SavingView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnListSavingActionPerformed
 
     private void mnTicketInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTicketInActionPerformed
         // TODO add your handling code here:
-         TicketIn ds = new TicketIn();
+         TicketInView ds = new TicketInView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnTicketInActionPerformed
 
     private void btTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketOutActionPerformed
         // TODO add your handling code here:
-         TicketOut ds = new TicketOut();
+         TicketOutView ds = new TicketOutView();
          ds.setVisible(true);
     }//GEN-LAST:event_btTicketOutActionPerformed
 
     private void mnTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTicketOutActionPerformed
         // TODO add your handling code here:
-         TicketIn ds = new TicketIn();
+         TicketInView ds = new TicketInView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnTicketOutActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        KhachHangView ds = new KhachHangView();
+         ds.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,20 +400,21 @@ public class Admin extends javax.swing.JFrame {
             }
             
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin().setVisible(true);
+                new AdminView().setVisible(true);
             }
         });
     }
@@ -396,12 +427,14 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btTicketIn;
     private javax.swing.JButton btTicketOut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbAddress;

@@ -15,38 +15,132 @@ import stk.util.HibernateUtil;
  *
  * @author Administrator
  */
-public class PhieuGoiHelper {
+public class PhieuGoiHelper extends AbstractClassHelper{
  Session session = null;
-    List<Phieuguitien> userList;
+    List<Phieuguitien> objList;
 
     public PhieuGoiHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
-
-    @SuppressWarnings("unchecked")
-    public List<Phieuguitien> getPhieuguitienList() {
-        userList = new ArrayList<Phieuguitien>();
+     
+    @Override
+    public int doCreate(Object entity) {
+        openConnect(session);
+        Phieuguitien obj = (Phieuguitien) entity;
+        session.save(obj);
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Phieuguitien as kh");
-            userList = (List<Phieuguitien>) q.list();
+             session.save(obj);
+            return SUCCESS;
+
         } catch (Exception e) {
-            userList = null;
-            e.printStackTrace();
+            System.out.println("error:" + e);
+            return FAIL;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
-        session.close();
-        return userList;
     }
 
-    public Phieuguitien getKhachhangByID(int userId) {
-        Phieuguitien user = null;
+    @Override
+    public int doUpdate(Object entity) {
+        openConnect(session);
+        Phieuguitien obj = (Phieuguitien) entity;
+        String hql = "update Phieuguitien as kh set "
+                 + "ten=:ten, "
+                 + "cmnd=:cmnd, "
+                 + "diachi=:diachi "
+                 + "where "
+                 + "id = :id ";
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Phieuguitien as kh where kh.id=" + userId);
-            user = (Phieuguitien) q.uniqueResult();
+            Query q = session.createQuery(hql);
+            q.setInteger("id", obj.getId());
+            q.setInteger("cmnd", obj.getCmnd());
+            q.setString("diachi", obj.getDiaChi());
+            q.setString("ten", obj.getTen());
+            q.executeUpdate();
+
+            return SUCCESS;
+            
+        } catch (Exception e) {
+            System.out.println("error:" + e);
+            return FAIL;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+
+        }
+    }
+
+    @Override
+    public int doDelete(Object entity) {
+        openConnect(session);
+        Phieuguitien obj = (Phieuguitien) entity;
+        try {
+            Query q = session.createQuery("delete Phieuguitien as kh where kh.id=" + obj.getId());
+            q.executeUpdate();
+            return SUCCESS;
+
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            return FAIL;
+
+        }finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public <T extends Object> List<T>  doSeleteAll(Object condition) {
+        openConnect(session);
+        List<Phieuguitien> objList = new ArrayList<Phieuguitien>();
+        try {
+            Query q = session.createQuery("from Phieuguitien as kh ");        
+            objList = (List<Phieuguitien>) q.list();
+        } catch (Exception e) {
+            objList = null;
+            e.printStackTrace();
+        }
+        finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+            return(List<T>) objList;
+        }
+    }
+
+    @Override
+    public Object doSeleteById(int id) {
+        openConnect(session);
+        Phieuguitien obj = null;
+        try {
+            Query q = session.createQuery("from Phieuguitien as kh where kh.id=" + id);
+            obj = (Phieuguitien) q.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return user;
+        finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+            return obj;
+        }
+    }
+
+    @Override
+    public void closeConnect(Session session) {
+        if (session != null && session.isOpen()) {
+                session.close();
+        }    
+    }
+
+    @Override
+    public void openConnect(Session session) {
+        this.session = HibernateUtil.getSessionFactory().openSession();
+              
     }
 }
