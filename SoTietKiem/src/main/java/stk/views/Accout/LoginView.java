@@ -5,7 +5,11 @@
  */
 package stk.views.Accout;
 
-import stk.controller.TaiKhoanController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Window;
+import stk.entities.Taikhoan;
+import stk.helper.TaiKhoanHelper;
 import stk.util.ShowMessage;
 import stk.util.Utill;
 import stk.views.Admin.AdminView;
@@ -22,9 +26,14 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         checkSaveLogin();
-
+        centreWindow(this);
     }
-
+  public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,19 +191,24 @@ public class LoginView extends javax.swing.JFrame {
         private boolean checkLogin() {
             String user_name = jTextField1.getText();
             String password = jPasswordField1.getText();
-                    
+            TaiKhoanHelper tkh= new TaiKhoanHelper();
 		if(user_name.isEmpty()) {
 			new ShowMessage().ShowError("Vui lòng nhập tên tài khoản", "Lỗi dữ liệu");
-
+                        return false;
 		}else if(password.isEmpty()) {
 			new ShowMessage().ShowError("Vui lòng nhập mật khẩu", "Lỗi dữ liệu");
-
-		}else if(!TaiKhoanController.LoginUser(user_name, password)) {
-			new ShowMessage().ShowError("Tài khoản hoặc mật khẩu không chính xác!", "Lỗi dữ liệu");
-
-		}else {
-			return true;
+                        return false;
 		}
+                Taikhoan tk = tkh.login(user_name, password);
+
+                if(tk != null) {
+                    Utill.SaveUser(tk);
+
+                    return true;
+                }else {
+                    new ShowMessage().ShowError("Tài khoản hoặc mật khẩu không chính xác!", "Lỗi dữ liệu");
+                    
+                }
 		
 		return false;
 	}

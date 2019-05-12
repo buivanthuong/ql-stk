@@ -5,6 +5,10 @@
  */
 package stk.views.Saving;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Window;
+
 /**
  *
  * @author Administrator
@@ -16,8 +20,14 @@ public class EditSavingView extends javax.swing.JFrame {
      */
     public EditSavingView() {
         initComponents();
+        centreWindow(this);
     }
-
+  public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,6 +5,9 @@
  */
 package stk.views.Admin;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import stk.entities.Khachhang;
 import stk.entities.Phieuguitien;
+import stk.entities.Taikhoan;
 import stk.helper.KhachHangHelper;
 import stk.helper.PhieuGoiHelper;
 import stk.util.Utill;
@@ -40,9 +44,14 @@ public class AdminView extends javax.swing.JFrame {
         initComponents();
         updateTime();
         setTable();
-
+        centreWindow(this);
     }
-
+  public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,11 +314,14 @@ public class AdminView extends javax.swing.JFrame {
     private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLogoutActionPerformed
         // TODO add your handling code here:
         Utill.SaveLogin(false);
-        Utill.SaveUser(null);
         
-        LoginView ds = new LoginView();
-        ds.setVisible(true);
-        this.setVisible(false);
+         /* Create and display the form */
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new LoginView().setVisible(true);
+                    }
+                });
+		 this.setVisible(false);
     }//GEN-LAST:event_mnLogoutActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed

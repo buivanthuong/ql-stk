@@ -30,7 +30,7 @@ create table IF NOT EXISTS KhachHang (
 	ID int(11) not null auto_increment primary key ,
     Ten nvarchar(30) not null ,
     CMND int (11) not null,
-    DiaChi nvarchar(20) not null
+    DiaChi nvarchar(200) not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 create table IF NOT EXISTS QuyDinh (

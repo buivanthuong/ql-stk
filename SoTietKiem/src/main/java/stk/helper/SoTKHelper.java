@@ -5,32 +5,32 @@
  */
 package stk.helper;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import stk.entities.Phieuguitien;
+import stk.entities.Sotk;
+import stk.entities.Sotk;
 import stk.util.HibernateUtil;
 
 /**
  *
  * @author Administrator
  */
-public class PhieuGoiHelper extends AbstractClassHelper{
- Session session = null;
-    List<Phieuguitien> objList;
+public class SoTKHelper extends AbstractClassHelper {
+    Session session = null;
 
-    public PhieuGoiHelper() {
+    public SoTKHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
-     
+    
     @Override
     public int doCreate(Object entity) {
         openConnect(session);
-        Phieuguitien obj = (Phieuguitien) entity;
-        session.save(obj);
+        Sotk user = (Sotk) entity;
+        session.save(user);
         try {
-             session.save(obj);
+             session.save(user);
             return SUCCESS;
 
         } catch (Exception e) {
@@ -46,19 +46,22 @@ public class PhieuGoiHelper extends AbstractClassHelper{
     @Override
     public int doUpdate(Object entity) {
         openConnect(session);
-        Phieuguitien obj = (Phieuguitien) entity;
-        String hql = "update Phieuguitien as kh set "
+        Sotk user = (Sotk) entity;
+        String hql = "update Sotk as kh set "
                  + "idkhachhang=:idkhachhang, "
-                 + "sotiengui=:sotiengui, "
-                 + "ngaygui=:ngaygui "
+                 + "loaitk=:loaitk, "
+                 + "ngaymoso=:ngaymoso "
+                 + "sotiengui=:sotiengui "
                  + "where "
                  + "id = :id ";
         try {
+            org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql);
-            q.setInteger("id", obj.getId());
-            q.setInteger("idkhachhang", obj.getIdKh());
-            q.setInteger("sotiengui", obj.getSoTienGui());
-            q.setDate("ngaygui", obj.getNgayGui());
+            q.setInteger("id", user.getId());
+            q.setInteger("idkhachhang", user.getIdKh());
+            q.setInteger("loaitk", user.getLoaiTk());
+            q.setDate("ngaymoso", user.getNgayMoSo());
+            q.setInteger("sotiengui", user.getSoTienGui());
             q.executeUpdate();
 
             return SUCCESS;
@@ -77,9 +80,9 @@ public class PhieuGoiHelper extends AbstractClassHelper{
     @Override
     public int doDelete(Object entity) {
         openConnect(session);
-        Phieuguitien obj = (Phieuguitien) entity;
+        Sotk user = (Sotk) entity;
         try {
-            Query q = session.createQuery("delete Phieuguitien as kh where kh.id=" + obj.getId());
+            Query q = session.createQuery("delete Sotk as kh where kh.id=" + user.getId());
             q.executeUpdate();
             return SUCCESS;
 
@@ -98,29 +101,29 @@ public class PhieuGoiHelper extends AbstractClassHelper{
     @Override
     public <T extends Object> List<T>  doSeleteAll(Object condition) {
         openConnect(session);
-        List<Phieuguitien> objList = new ArrayList<Phieuguitien>();
+        List<Sotk> userList = new ArrayList<Sotk>();
         try {
-            Query q = session.createQuery("from Phieuguitien as kh ");        
-            objList = (List<Phieuguitien>) q.list();
+            Query q = session.createQuery("from Sotk as kh ");        
+            userList = (List<Sotk>) q.list();
         } catch (Exception e) {
-            objList = null;
+            userList = null;
             e.printStackTrace();
         }
         finally {
             if (session != null && session.isOpen()) {
                 session.close();
             }
-            return(List<T>) objList;
+            return(List<T>) userList;
         }
     }
 
     @Override
     public Object doSeleteById(int id) {
         openConnect(session);
-        Phieuguitien obj = null;
+        Sotk user = null;
         try {
-            Query q = session.createQuery("from Phieuguitien as kh where kh.id=" + id);
-            obj = (Phieuguitien) q.uniqueResult();
+            Query q = session.createQuery("from Sotk as kh where kh.id=" + id);
+            user = (Sotk) q.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,7 +131,7 @@ public class PhieuGoiHelper extends AbstractClassHelper{
             if (session != null && session.isOpen()) {
                 session.close();
             }
-            return obj;
+            return user;
         }
     }
 
