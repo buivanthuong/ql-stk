@@ -9,6 +9,16 @@ package stk.views.Saving;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import stk.entities.Khachhang;
+import stk.entities.Loaitietkiem;
+import stk.entities.Sotk;
+import stk.helper.KhachHangHelper;
+import stk.helper.LoaiTietKiemHelper;
 import stk.helper.SoTKHelper;
 
 /**
@@ -17,11 +27,14 @@ import stk.helper.SoTKHelper;
  */
 public class SavingView extends javax.swing.JFrame {
     int currentId = - 1;
-    SoTKHelper kh = new SoTKHelper();    
+    SoTKHelper stk = new SoTKHelper();    
+    KhachHangHelper kh = new KhachHangHelper();
+    LoaiTietKiemHelper ltk = new LoaiTietKiemHelper();
     /** Creates new form OpenSaving */
     public SavingView() {
         initComponents();
         centreWindow(this);
+        initData();
     }
   public static void centreWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,7 +58,6 @@ public class SavingView extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,12 +66,17 @@ public class SavingView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sổ", "Tên", "Địa chỉ", "Số tiền gửi", "Loại", "CMND", "Ngày mở"
+                "Mã sổ", "Tên", "Số tiền gửi", "Loại", "Ngày mở"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("Mở số tiết kiệm");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setToolTipText("sfef");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +96,7 @@ public class SavingView extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,37 +116,31 @@ public class SavingView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("jButton1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(754, Short.MAX_VALUE)
-                .addComponent(jButton1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap(504, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(24, Short.MAX_VALUE)))
+                    .addContainerGap(337, Short.MAX_VALUE)))
         );
 
         pack();
@@ -138,6 +149,12 @@ public class SavingView extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        AddSavingView s = new AddSavingView();
+        s.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +195,6 @@ public class SavingView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -188,4 +204,38 @@ public class SavingView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    private void initData() {
+        List<Sotk> stks= new ArrayList<Sotk>();
+        
+        stks  =  stk.doSeleteAll(null);
+        
+        for (Sotk stk1 : stks) {
+            stk1.Ten = getTenKh(stk1.getIdKh());
+            stk1.Loai = getLoai(stk1.getLoaiTk());
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        try{
+            while(model.getRowCount() > 0){
+           model.removeRow(0);
+        }}catch(Exception e){}
+        for (Sotk item : stks) {
+               model.addRow(new Object[]{item.getMaSo(), item.Ten, item.Loai,item.getSoTienGui() ,item.getNgayMoSo()});
+        }
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+            
+        }
+    });
+    }
+
+    private String getTenKh(Integer id) {
+         Khachhang k = (Khachhang) kh.doSeleteById(id);
+         return k.getTen();
+    }
+    private String getLoai(Integer id) {
+         Loaitietkiem k = (Loaitietkiem) ltk.doSeleteById(id);
+         return k.getTenLoai();
+    }
 }
