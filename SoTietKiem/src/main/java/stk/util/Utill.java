@@ -6,6 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.prefs.Preferences;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import stk.entities.Taikhoan;
@@ -114,5 +119,28 @@ public class Utill {
         } catch (Exception e) {
         }
         return -1;
+    }
+
+    public static String getNowDate() {
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        String date = simpleDateFormat.format(new Date());
+        return date;
+    }
+    public static Date setDate(String dates) {
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        Date date;
+            try {
+                
+                date = simpleDateFormat.parse(dates);
+                return date;
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Utill.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return new Date();
     }
 }

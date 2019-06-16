@@ -42,6 +42,9 @@ public class AccoutView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuBar1 = new java.awt.MenuBar();
+        menu1 = new java.awt.Menu();
+        menu2 = new java.awt.Menu();
         txTen = new javax.swing.JTextField();
         txHoTen = new javax.swing.JTextField();
         btUpdate = new javax.swing.JButton();
@@ -51,6 +54,12 @@ public class AccoutView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txMatKhau = new javax.swing.JPasswordField();
         txLaimatKhau = new javax.swing.JPasswordField();
+
+        menu1.setLabel("File");
+        menuBar1.add(menu1);
+
+        menu2.setLabel("Edit");
+        menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -203,6 +212,9 @@ public class AccoutView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private java.awt.Menu menu1;
+    private java.awt.Menu menu2;
+    private java.awt.MenuBar menuBar1;
     private javax.swing.JTextField txHoTen;
     private javax.swing.JPasswordField txLaimatKhau;
     private javax.swing.JPasswordField txMatKhau;
