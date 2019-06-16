@@ -319,7 +319,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btLogo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton6"/>
+        <Property name="label" type="java.lang.String" value="STK"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

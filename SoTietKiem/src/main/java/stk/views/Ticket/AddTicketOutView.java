@@ -47,7 +47,7 @@ public class AddTicketOutView extends javax.swing.JFrame {
         jTextField29 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel30.setText("Mã sổ");
 

@@ -45,14 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sotietkiem?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.connection.password"/>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="stk/Loaitietkiem.hbm.xml"/>
-    <mapping resource="stk/Phieuguitien.hbm.xml"/>
-    <mapping resource="stk/Khachhang.hbm.xml"/>
-    <mapping resource="stk/Sotk.hbm.xml"/>
-    <mapping resource="stk/Taikhoan.hbm.xml"/>
-    <mapping resource="stk/Phieuruttien.hbm.xml"/>
-    <mapping resource="stk/Quydinh.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

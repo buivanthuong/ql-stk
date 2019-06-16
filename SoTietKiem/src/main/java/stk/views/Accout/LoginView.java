@@ -25,6 +25,8 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        jTextField1.setText("buivanthuong");
+        jPasswordField1.setText("123456");
         checkSaveLogin();
         centreWindow(this);
     }
@@ -215,6 +217,7 @@ public class LoginView extends javax.swing.JFrame {
 	private boolean checkSaveLogin() {
             if(Utill.GetSaveLogin()) {
 		 AdminView ds = new AdminView();
+                 
                  ds.setVisible(true);
 		 this.setVisible(false);
 		}

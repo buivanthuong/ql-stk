@@ -53,7 +53,7 @@ public class ConfigView extends javax.swing.JFrame {
         txtNumDate = new javax.swing.JTextField();
         txMinMoney = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btUpdate.setText("Cập nhật");
         btUpdate.addActionListener(new java.awt.event.ActionListener() {

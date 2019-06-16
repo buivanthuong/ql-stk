@@ -11,6 +11,9 @@ import java.awt.Window;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -42,6 +45,7 @@ public class AdminView extends javax.swing.JFrame {
      */
     public AdminView() {
         initComponents();
+        customView();
         updateTime();
         setTable();
         centreWindow(this);
@@ -168,7 +172,7 @@ public class AdminView extends javax.swing.JFrame {
         lbAddress.setText("123 Lê lợi , Phường Dakao, Quận 1, TP HỒ CHÍ MINH");
         getContentPane().add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        btLogo.setText("jButton6");
+        btLogo.setLabel("STK");
         getContentPane().add(btLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
@@ -525,5 +529,13 @@ public class AdminView extends javax.swing.JFrame {
 	// background thread
 	updateThread.setDaemon(true);
 	updateThread.start();
+    }
+
+    private void customView() {
+        try {
+          btLogo.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("resources/image/logo.png"))));
+        } catch (Exception ex) {
+          System.out.println(ex);
+        }    
     }
 }

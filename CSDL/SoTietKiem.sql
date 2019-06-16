@@ -6,6 +6,7 @@ use sotietkiem ;
 
 CREATE TABLE IF NOT EXISTS SoTK (
   ID int(11) not null auto_increment primary key ,
+  MaSo nvarchar(50) not null,
   IdKH int(11) not null,
   LoaiTK int(11) not null,
   NgayMoSo date not null,
@@ -45,6 +46,7 @@ create table IF NOT EXISTS QuyDinh (
 
 create table IF NOT EXISTS PhieuGuiTien (
 	ID int(11) not null auto_increment primary key ,
+	MaSo nvarchar(50) not null,
     IdKH int(11) not null ,
     SoTienGui int(30) not null ,
     NgayGui date not null
@@ -52,6 +54,7 @@ create table IF NOT EXISTS PhieuGuiTien (
 
 create table IF NOT EXISTS PhieuRutTien (
 	ID int(11) not null auto_increment primary key ,
+	MaSo nvarchar(50) not null,
     IdKH int(11) not null ,
     SoTienRut int(30) not null ,
     NgayRut date not null
@@ -71,11 +74,11 @@ INSERT INTO KhachHang(Ten,CMND,DiaChi) VALUES('Nguyễn Văn An','221419587','N
 INSERT INTO KhachHang(Ten,CMND,DiaChi) VALUES('Trần Thị Linh','221419465','Hà Nội');
 INSERT INTO KhachHang(Ten,CMND,DiaChi) VALUES('Phạm Văn Toàn','221419214','Hồ Chí Minh');
 
-INSERT INTO sotk(IdKH,LoaiTk,NgayMoSo,SoTienGui) VALUES('1','1','2018-12-22','500000');
+INSERT INTO sotk(MaSo,IdKH,LoaiTk,NgayMoSo,SoTienGui) VALUES('SK123123','1','1','2018-12-22','5000000');
 
-INSERT INTO phieuguitien(IdKH,SoTienGui,NgayGui) VALUES('1','500000','2018-12-22');
+INSERT INTO phieuguitien(MaSo,IdKH,SoTienGui,NgayGui) VALUES('SK123123','1','500000','2018-12-22');
 
-INSERT INTO phieuruttien(IdKH,SoTienRut,NgayRut) VALUES('1','300000','2018-12-23');
+INSERT INTO phieuruttien(MaSo,IdKH,SoTienRut,NgayRut) VALUES('SK123123','1','300000','2018-12-23');
 
 INSERT INTO taikhoan(TenTaiKhoan,HoTen,MatKhau) VALUES('buivanthuong','Bùi Văn Thương','e10adc3949ba59abbe56e057f20f883e');
 

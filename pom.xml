@@ -70,7 +70,6 @@
     <modules>
         <module>branding</module>
         <module>application</module>
-        <module>SoTietKiem</module>
     </modules>
 
     <properties>

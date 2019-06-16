@@ -48,7 +48,7 @@ public class SavingReportView extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
