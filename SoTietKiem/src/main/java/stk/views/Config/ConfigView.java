@@ -54,6 +54,7 @@ public class ConfigView extends javax.swing.JFrame {
         txMinMoney = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cài đặt");
 
         btUpdate.setText("Cập nhật");
         btUpdate.addActionListener(new java.awt.event.ActionListener() {

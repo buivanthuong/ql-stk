@@ -49,6 +49,7 @@ public class SavingReportView extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Báo cá tháng");
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -48,15 +48,16 @@ public class PhieuGoiHelper extends AbstractClassHelper{
         openConnect(session);
         Phieuguitien obj = (Phieuguitien) entity;
         String hql = "update Phieuguitien as kh set "
-                 + "idkhachhang=:idkhachhang, "
+                 + "idkh=:idkh, "
                  + "sotiengui=:sotiengui, "
                  + "ngaygui=:ngaygui "
                  + "where "
                  + "id = :id ";
         try {
+            org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql);
             q.setInteger("id", obj.getId());
-            q.setInteger("idkhachhang", obj.getIdKh());
+            q.setInteger("idkh", obj.getIdKh());
             q.setInteger("sotiengui", obj.getSoTienGui());
             q.setDate("ngaygui", obj.getNgayGui());
             q.executeUpdate();
@@ -79,6 +80,7 @@ public class PhieuGoiHelper extends AbstractClassHelper{
         openConnect(session);
         Phieuguitien obj = (Phieuguitien) entity;
         try {
+            
             Query q = session.createQuery("delete Phieuguitien as kh where kh.id=" + obj.getId());
             q.executeUpdate();
             return SUCCESS;
@@ -129,6 +131,25 @@ public class PhieuGoiHelper extends AbstractClassHelper{
                 session.close();
             }
             return obj;
+        }
+    }
+
+    public <T extends Object> List<T> doSeleteByMaso(String id) {
+        openConnect(session);
+        openConnect(session);
+        List<Phieuguitien> objList = new ArrayList<Phieuguitien>();
+        try {
+            Query q = session.createQuery("from Phieuguitien as kh where maso ='" + id + "'");        
+            objList = (List<Phieuguitien>) q.list();
+        } catch (Exception e) {
+            objList = null;
+            e.printStackTrace();
+        }
+        finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+            return(List<T>) objList;
         }
     }
 

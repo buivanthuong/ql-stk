@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import stk.entities.Khachhang;
+import stk.entities.Sotk;
 import stk.util.HibernateUtil;
 
 /**
@@ -143,5 +144,9 @@ public class KhachHangHelper extends AbstractClassHelper {
     public void openConnect(Session session) {
         this.session = HibernateUtil.getSessionFactory().openSession();
               
+    }
+
+    public Khachhang doSeleteById(Sotk get) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

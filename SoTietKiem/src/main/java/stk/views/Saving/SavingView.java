@@ -16,10 +16,15 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import stk.entities.Khachhang;
 import stk.entities.Loaitietkiem;
+import stk.entities.Phieuguitien;
+import stk.entities.Phieuruttien;
 import stk.entities.Sotk;
 import stk.helper.KhachHangHelper;
 import stk.helper.LoaiTietKiemHelper;
+import stk.helper.PhieuGoiHelper;
+import stk.helper.PhieuRutTienHelper;
 import stk.helper.SoTKHelper;
+import stk.util.Utill;
 
 /**
  *
@@ -30,6 +35,8 @@ public class SavingView extends javax.swing.JFrame {
     SoTKHelper stk = new SoTKHelper();    
     KhachHangHelper kh = new KhachHangHelper();
     LoaiTietKiemHelper ltk = new LoaiTietKiemHelper();
+    PhieuRutTienHelper pr = new PhieuRutTienHelper();       
+    PhieuGoiHelper pg = new PhieuGoiHelper();
     /** Creates new form OpenSaving */
     public SavingView() {
         initComponents();
@@ -55,18 +62,17 @@ public class SavingView extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Danh sách sổ tiết kiệm");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã sổ", "Tên", "Số tiền gửi", "Loại", "Ngày mở"
+                "Mã sổ", "Tên", "Loại", "Số Dư", "Ngày mở"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -78,16 +84,12 @@ public class SavingView extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setToolTipText("sfef");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Làm mới");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Tìm Theo mã");
-
-        jButton2.setText("Tìm");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -96,13 +98,9 @@ public class SavingView extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(69, 69, 69))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 568, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +108,6 @@ public class SavingView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
@@ -146,15 +142,16 @@ public class SavingView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         AddSavingView s = new AddSavingView();
         s.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        initData();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,11 +194,9 @@ public class SavingView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     private void initData() {
@@ -209,6 +204,7 @@ public class SavingView extends javax.swing.JFrame {
         
         stks  =  stk.doSeleteAll(null);
         
+
         for (Sotk stk1 : stks) {
             stk1.Ten = getTenKh(stk1.getIdKh());
             stk1.Loai = getLoai(stk1.getLoaiTk());
@@ -220,7 +216,11 @@ public class SavingView extends javax.swing.JFrame {
            model.removeRow(0);
         }}catch(Exception e){}
         for (Sotk item : stks) {
-               model.addRow(new Object[]{item.getMaSo(), item.Ten, item.Loai,item.getSoTienGui() ,item.getNgayMoSo()});
+            String sodu = soDu(item);
+            if(sodu != "0")
+               model.addRow(new Object[]{item.getMaSo(), item.Ten, item.Loai,sodu ,item.getNgayMoSo()});
+              
+               
         }
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         @Override
@@ -237,5 +237,23 @@ public class SavingView extends javax.swing.JFrame {
     private String getLoai(Integer id) {
          Loaitietkiem k = (Loaitietkiem) ltk.doSeleteById(id);
          return k.getTenLoai();
+    }
+
+    private String soDu(Sotk item) {
+        double value = 0;
+        List<Phieuguitien> pgs =  pg.doSeleteByMaso(item.getMaSo());
+        double tiengoi = 0;
+        for (Phieuguitien pg1 : pgs) {
+            tiengoi += pg1.getSoTienGui();
+        }
+        
+        List<Phieuruttien> prs =  pr.doSeleteByMaSo(item.getMaSo());
+        double tienrut= 0;
+        for (Phieuruttien pr1 : prs) {
+            tienrut+=pr1.getSoTienRut();
+        }
+        value = item.getSoTienGui() + tiengoi - tienrut;
+                  
+        return Utill.customFormat(value);
     }
 }

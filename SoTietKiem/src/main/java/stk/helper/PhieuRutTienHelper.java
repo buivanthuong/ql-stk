@@ -79,6 +79,8 @@ public class PhieuRutTienHelper extends AbstractClassHelper {
         openConnect(session);
         Phieuruttien user = (Phieuruttien) entity;
         try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+
             Query q = session.createQuery("delete Phieuruttien as kh where kh.id=" + user.getId());
             q.executeUpdate();
             return SUCCESS;
@@ -131,7 +133,23 @@ public class PhieuRutTienHelper extends AbstractClassHelper {
             return user;
         }
     }
-
+  public  <T extends Object> List<T>   doSeleteByMaSo(String id) {
+         openConnect(session);
+        List<Phieuruttien> userList = new ArrayList<Phieuruttien>();
+        try {
+            Query q = session.createQuery("from Phieuruttien as kh where  maso ='" + id + "'");     
+            userList = (List<Phieuruttien>) q.list();
+        } catch (Exception e) {
+            userList = null;
+            e.printStackTrace();
+        }
+        finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+            return(List<T>) userList;
+        }
+    }
     @Override
     public void closeConnect(Session session) {
         if (session != null && session.isOpen()) {

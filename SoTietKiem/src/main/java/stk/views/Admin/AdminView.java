@@ -70,17 +70,19 @@ public class AdminView extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        tfSearchSaving = new javax.swing.JTextField();
-        btSearch = new javax.swing.JButton();
         btOpenSaving = new javax.swing.JButton();
         btTicketIn = new javax.swing.JButton();
         btTicketOut = new javax.swing.JButton();
         btReport = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btLogo = new javax.swing.JButton();
         lbNameBank = new javax.swing.JLabel();
         lbAddress = new javax.swing.JLabel();
-        btLogo = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        btOpenSaving1 = new javax.swing.JButton();
+        btTicketOut1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         lbTime = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnAccount = new javax.swing.JMenu();
         mnInfoAccount = new javax.swing.JMenuItem();
@@ -106,82 +108,107 @@ public class AdminView extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(770, 550));
+        setTitle("Quản lý sổ tiết kiệm");
         setMinimumSize(new java.awt.Dimension(770, 550));
-        setPreferredSize(new java.awt.Dimension(767, 530));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("QUẢN LÝ SỔ TIẾT KIỆM");
         jLabel1.setAlignmentX(0.5F);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 440, 85));
-
-        tfSearchSaving.setText("Tra cứu sổ tiết kiệm");
-        tfSearchSaving.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSearchSavingActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tfSearchSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 361, -1));
-
-        btSearch.setText("Tra cứu");
-        getContentPane().add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 440, 85));
 
         btOpenSaving.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btOpenSaving.setText("Mở sổ tiết kiệm");
+        btOpenSaving.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/list.png"))); // NOI18N
+        btOpenSaving.setText("Danh sách Sổ");
         btOpenSaving.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btOpenSavingActionPerformed(evt);
             }
         });
-        getContentPane().add(btOpenSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 143, 63));
+        getContentPane().add(btOpenSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 200, 63));
 
         btTicketIn.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btTicketIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/in.png"))); // NOI18N
         btTicketIn.setText("Phiếu gởi");
         btTicketIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTicketInActionPerformed(evt);
             }
         });
-        getContentPane().add(btTicketIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 132, 63));
+        getContentPane().add(btTicketIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 180, 63));
 
         btTicketOut.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btTicketOut.setText("Phiểu rút");
+        btTicketOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/setting.png"))); // NOI18N
+        btTicketOut.setText("Quy Định");
         btTicketOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTicketOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btTicketOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 128, 63));
+        getContentPane().add(btTicketOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 150, 63));
 
         btReport.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/report.png"))); // NOI18N
         btReport.setText("Báo cáo");
         btReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btReportActionPerformed(evt);
             }
         });
-        getContentPane().add(btReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 137, 63));
+        getContentPane().add(btReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 150, 63));
 
-        lbNameBank.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbNameBank.setText("NGÂN HÀNG NHÀ NƯỚC VIỆT NAM");
-        getContentPane().add(lbNameBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
-
-        lbAddress.setText("123 Lê lợi , Phường Dakao, Quận 1, TP HỒ CHÍ MINH");
-        getContentPane().add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
-
-        btLogo.setLabel("STK");
-        getContentPane().add(btLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
-
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(247, 254, 247));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbTime.setText("12:30 PM      22 - 05 - 2019");
-        jPanel1.add(lbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 0, 170, 50));
+        btLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bank.png"))); // NOI18N
+        btLogo.setText("");
+        jPanel1.add(btLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 770, 50));
+        lbNameBank.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbNameBank.setForeground(new java.awt.Color(0, 51, 51));
+        lbNameBank.setText("NGÂN HÀNG NHÀ NƯỚC VIỆT NAM");
+        jPanel1.add(lbNameBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        lbAddress.setForeground(new java.awt.Color(0, 51, 51));
+        lbAddress.setText("123 Lê lợi , Phường Dakao, Quận 1, TP HỒ CHÍ MINH");
+        jPanel1.add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 70));
+
+        btOpenSaving1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btOpenSaving1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
+        btOpenSaving1.setText("Mở sổ tiết kiệm");
+        btOpenSaving1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOpenSaving1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btOpenSaving1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 200, 63));
+
+        btTicketOut1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btTicketOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/out.png"))); // NOI18N
+        btTicketOut1.setText("Phiểu rút");
+        btTicketOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTicketOut1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btTicketOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 180, 63));
+
+        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/clock.png"))); // NOI18N
+        lbTime.setText("12:30 PM      22/05/2019");
+        lbTime.setToolTipText("");
+        jPanel2.add(lbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 170, 30));
+
+        jLabel3.setText("Nhân viên: Bùi văn thương");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 900, 30));
 
         mnAccount.setText("Tài khoản");
 
@@ -203,7 +230,7 @@ public class AdminView extends javax.swing.JFrame {
 
         jMenuBar1.add(mnAccount);
 
-        jMenu2.setText("Sổ tiết kiêm");
+        jMenu2.setText("   Sổ tiết kiêm   ");
 
         mnOpenSaving.setText("Mở sổ tiết kiệm");
         mnOpenSaving.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +270,7 @@ public class AdminView extends javax.swing.JFrame {
 
         jMenuBar1.add(mnTicket);
 
-        jMenu4.setText("Báo cáo");
+        jMenu4.setText("   Báo cáo");
 
         mnReportDaily.setText("Báo cáo ngày");
         mnReportDaily.addActionListener(new java.awt.event.ActionListener() {
@@ -263,7 +290,7 @@ public class AdminView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        mnConfig.setText("Quy định");
+        mnConfig.setText("   Quy định   ");
 
         jMenuItem6.setText("Thay đổi quy định");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -334,12 +361,6 @@ public class AdminView extends javax.swing.JFrame {
         ds.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void tfSearchSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchSavingActionPerformed
-        // TODO add your handling code here:
-        SavingView ds = new SavingView();
-         ds.setVisible(true);
-    }//GEN-LAST:event_tfSearchSavingActionPerformed
-
     private void btTicketInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketInActionPerformed
         // TODO add your handling code here:
         TicketInView ds = new TicketInView();
@@ -377,13 +398,13 @@ public class AdminView extends javax.swing.JFrame {
 
     private void btTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketOutActionPerformed
         // TODO add your handling code here:
-         TicketOutView ds = new TicketOutView();
-         ds.setVisible(true);
+                 ConfigView ds = new ConfigView();
+        ds.setVisible(true);
     }//GEN-LAST:event_btTicketOutActionPerformed
 
     private void mnTicketOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTicketOutActionPerformed
         // TODO add your handling code here:
-         TicketInView ds = new TicketInView();
+         TicketOutView ds = new TicketOutView();
          ds.setVisible(true);
     }//GEN-LAST:event_mnTicketOutActionPerformed
 
@@ -396,6 +417,19 @@ public class AdminView extends javax.swing.JFrame {
         KhachHangView ds = new KhachHangView();
          ds.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btOpenSaving1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOpenSaving1ActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+         AddSavingView ds = new AddSavingView();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btOpenSaving1ActionPerformed
+
+    private void btTicketOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTicketOut1ActionPerformed
+        // TODO add your handling code here:
+         TicketOutView ds = new TicketOutView();
+         ds.setVisible(true);
+    }//GEN-LAST:event_btTicketOut1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,11 +472,13 @@ public class AdminView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogo;
     private javax.swing.JButton btOpenSaving;
+    private javax.swing.JButton btOpenSaving1;
     private javax.swing.JButton btReport;
-    private javax.swing.JButton btSearch;
     private javax.swing.JButton btTicketIn;
     private javax.swing.JButton btTicketOut;
+    private javax.swing.JButton btTicketOut1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -453,6 +489,7 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbAddress;
     private javax.swing.JLabel lbNameBank;
     private javax.swing.JLabel lbTime;
@@ -467,7 +504,6 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JMenu mnTicket;
     private javax.swing.JMenuItem mnTicketIn;
     private javax.swing.JMenuItem mnTicketOut;
-    private javax.swing.JTextField tfSearchSaving;
     // End of variables declaration//GEN-END:variables
 
     public  void setTable(){

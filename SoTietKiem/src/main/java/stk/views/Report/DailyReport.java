@@ -8,19 +8,43 @@ package stk.views.Report;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import stk.entities.Loaitietkiem;
+import stk.entities.Phieuguitien;
+import stk.entities.Phieuruttien;
+import stk.entities.Sotk;
+import stk.helper.KhachHangHelper;
+import stk.helper.LoaiTietKiemHelper;
+import stk.helper.PhieuGoiHelper;
+import stk.helper.PhieuRutTienHelper;
+import stk.helper.SoTKHelper;
+import stk.util.Utill;
 
 /**
  *
  * @author Administrator
  */
 public class DailyReport extends javax.swing.JFrame {
-
+    SoTKHelper stk = new SoTKHelper();    
+    LoaiTietKiemHelper ltk = new LoaiTietKiemHelper();
+    PhieuRutTienHelper pr = new PhieuRutTienHelper();       
+    PhieuGoiHelper pg = new PhieuGoiHelper();
+    
+     List<Sotk> stks= new ArrayList<Sotk>();
+    
     /**
      * Creates new form DailyReport
      */
     public DailyReport() {
         initComponents();
         centreWindow(this);
+        stks = stk.doSeleteAll(null);
+        
+        initData();
     }
   public static void centreWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -42,12 +66,13 @@ public class DailyReport extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        dateTextField1 = new stk.util.DateTextField();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Báo cáo ngày");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,9 +97,12 @@ public class DailyReport extends javax.swing.JFrame {
 
         jLabel8.setText("Nhập  ngày");
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yyyy"))));
-
         jButton1.setText("Xem");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,32 +114,35 @@ public class DailyReport extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addComponent(dateTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,12 +180,82 @@ public class DailyReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private stk.util.DateTextField dateTextField1;
     private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    private void initData() {
+        List<Loaitietkiem> stks= new ArrayList<Loaitietkiem>();
+        
+        stks  =  ltk.doSeleteAll(null);
+        
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        try{
+            while(model.getRowCount() > 0){
+           model.removeRow(0);
+        }}catch(Exception e){}
+        for (Loaitietkiem item : stks) {
+               model.addRow(new Object[]{item.getTenLoai(), getTongThu(item), getTongChi(item) , getChenhLech()});
+               
+               
+               
+        }
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+            
+        }    });
+
+    }
+    double tongthu = 0;
+    double tongchi = 0;
+    private String getTongThu(Loaitietkiem item) {
+        double value = 0;
+        for (Sotk stk1 : stks) {
+            if(stk1.getLoaiTk() == item.getId()){
+                value +=getTienGui(stk1);
+                value +=stk1.getSoTienGui();
+            }
+        }
+        tongthu= value;
+        return Utill.customFormat(value);
+    }
+
+    private String getTongChi(Loaitietkiem item) {
+        double value = 0;
+        for (Sotk stk1 : stks) {
+            if(stk1.getLoaiTk() == item.getId()){
+                value +=getTienRut(stk1);
+            }
+        }
+        tongchi= value;
+        return Utill.customFormat(value);
+    }
+
+    private String getChenhLech() {
+        return Utill.customFormat(tongthu - tongchi);
+    }
+    private double getTienGui(Sotk stk1){
+        List<Phieuguitien> pgs =  pg.doSeleteByMaso(stk1.getMaSo());
+        double tiengoi = 0;
+        for (Phieuguitien pg1 : pgs) {
+            tiengoi += pg1.getSoTienGui();
+        }
+        
+        return tiengoi;
+    }
+        private double getTienRut(Sotk stk1){
+        List<Phieuruttien> prs =  pr.doSeleteByMaSo(stk1.getMaSo());
+        double tienrut= 0;
+        for (Phieuruttien pr1 : prs) {
+            tienrut+=pr1.getSoTienRut();
+        }
+        
+        return tienrut;
+    }
 }

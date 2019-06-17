@@ -77,6 +77,7 @@ public class AddSavingView extends javax.swing.JFrame {
         txtClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mở sổ tiết kiệm");
 
         jLabel1.setText("Mã sổ");
 
@@ -223,6 +224,11 @@ public class AddSavingView extends javax.swing.JFrame {
         }
         if(txtDate.getText().isEmpty()){
             new ShowMessage().ShowError("Không được bỏ trống Ngày mở", "Vui lòng điền dữ liệu");
+            return;
+        }
+        int cmnd = Utill.parseInt(txtMoney.getText());
+        if(cmnd == -1){
+            new ShowMessage().ShowError("Không đúng định dạng số!", "Vui lòng điền dữ liệu");
             return;
         }
         if(txtMoney.getText().isEmpty()){

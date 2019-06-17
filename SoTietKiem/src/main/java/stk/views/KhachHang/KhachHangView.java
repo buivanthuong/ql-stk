@@ -51,7 +51,6 @@ public class KhachHangView extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
-        btDelete = new javax.swing.JButton();
         btEdit = new javax.swing.JButton();
         btClear = new javax.swing.JButton();
         txName = new javax.swing.JTextField();
@@ -94,13 +93,6 @@ public class KhachHangView extends javax.swing.JFrame {
             }
         });
 
-        btDelete.setText("Xóa");
-        btDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDeleteActionPerformed(evt);
-            }
-        });
-
         btEdit.setText("Sửa");
         btEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,11 +114,9 @@ public class KhachHangView extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(btAdd)
-                .addGap(28, 28, 28)
-                .addComponent(btDelete)
                 .addGap(18, 18, 18)
                 .addComponent(btEdit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(btClear, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -138,7 +128,6 @@ public class KhachHangView extends javax.swing.JFrame {
                     .addComponent(btClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -235,21 +224,6 @@ public class KhachHangView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btAddActionPerformed
 
-    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        // TODO add your handling code here:
-        if(currentId < 0){
-            new ShowMessage().ShowError("Không chọn dữ liệu!", "Vui lòng chọn dữ liệu cần xóa");
-            return;
-        }
-        if(new ShowMessage().ShowMessagerComfirm("Xác nhận xóa!")){
-            Khachhang obj = new Khachhang();
-            obj.setId(currentId);
-            kh.doDelete(obj);
-            btClearActionPerformed(null);
-        }
-
-    }//GEN-LAST:event_btDeleteActionPerformed
-
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
         if(currentId < 0){
             new ShowMessage().ShowError("Không chọn dữ liệu!", "Vui lòng chọn dữ liệu cần sửa");
@@ -328,7 +302,6 @@ public class KhachHangView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
     private javax.swing.JButton btClear;
-    private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

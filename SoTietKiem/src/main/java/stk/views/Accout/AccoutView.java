@@ -62,6 +62,7 @@ public class AccoutView extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Thông tin cá nhân");
 
         txHoTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

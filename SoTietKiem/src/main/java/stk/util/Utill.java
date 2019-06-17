@@ -128,6 +128,25 @@ public class Utill {
         String date = simpleDateFormat.format(new Date());
         return date;
     }
+    public static String showDate( String dates) {
+        String pattern = "yyyy-MM-dd";
+        String pattern2 = "dd/MM/yyyy";
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
+
+        Date date;
+            try {
+                
+                date = simpleDateFormat.parse(dates);
+                String a = simpleDateFormat2.format(date);
+                return a;
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Utill.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return getNowDate();
+    }
     public static Date setDate(String dates) {
         String pattern = "dd/MM/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -143,4 +162,8 @@ public class Utill {
             }
         return new Date();
     }
+    static public String customFormat(double value ) {
+      DecimalFormat myFormatter = new DecimalFormat("###,###,###,###");
+      return myFormatter.format(value);   
+   }
 }
